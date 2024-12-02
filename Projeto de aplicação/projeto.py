@@ -1,14 +1,12 @@
 import pandas as pd
-import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 # 1. Leitura do Dataset
-url = "autism_screening.csv"
+url = "Projeto de aplicação/autism_screening.csv"
 data = pd.read_csv(url, header=0)
 
-print(data.head())
-
+# 2. Processamento dos dados
 data = data.drop(columns=['relation', 'age_desc', 'used_app_before'])
-data = pd.get_dummies(data, columns=['austim'])
-
-print(data.head())
-
+data = data.rename(columns={'austim': 'autism_family', 'Class/ASD': 'autism'})
+data = pd.get_dummies(data, columns=['autism_family', 'gender', 'jundice', 'autism'])
